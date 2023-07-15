@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import './App.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 
 import Column from './components/Column';
 import MovableItem from './components/MoveAbleItem';
@@ -12,6 +13,8 @@ export default function App() {
     { id: 2, name: 'item-2', column: 'Segunda coluna' },
     { id: 3, name: 'item-3', column: 'Primeira coluna' },
   ]);
+
+  const isMobile = window.innerWidth < 600;
 
   const moveCardHandler = (dragIndex, hoverIndex) => {
     const dragItem = items[dragIndex];
@@ -47,7 +50,7 @@ export default function App() {
 
   return (
     <div className="container container-height-100">
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <div className='row container-height-100' style={{ padding: '25px' }}>
             <div className="col">
               <Column title='Primeira coluna' className='column fist-column'>
