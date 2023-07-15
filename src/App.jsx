@@ -13,11 +13,35 @@ export default function App() {
     { id: 3, name: 'item-3', column: 'Primeira coluna' },
   ]);
 
+  const moveCardHandler = (dragIndex, hoverIndex) => {
+    const dragItem = items[dragIndex];
+
+    if (dragItem) {
+      setItems(prevState => {
+        const copiedStateArray = [...prevState];
+
+        // remove item by hoverIndex and put dragItem instead
+        const prevItem = copiedStateArray.splice(hoverIndex, 1, dragItem);
+
+        // remove item by dragIdenx and put prevItem instead
+        copiedStateArray.splice(dragIndex, 1, prevItem[0]);
+
+        return copiedStateArray;
+      });
+    }
+  }
+
   const returnItemsForColumn = (columnName) => {
     return items
       .filter((item) => item.column === columnName)
-      .map(item => (
-        <MovableItem key={item.id} name={item.name} setItems={setItems}/>
+      .map((item, index) => (
+        <MovableItem
+          key={item.id}
+          name={item.name}
+          setItems={setItems}
+          index={index}
+          moveCardHandler={moveCardHandler}
+        />
       ));
   };
 
