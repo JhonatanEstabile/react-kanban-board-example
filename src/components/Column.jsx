@@ -8,9 +8,18 @@ export default function Column({ children, className, title }) {
   });
 
   return (
-    <div ref={drop} className={className}>
-      {title}
-      {children}
+    <div class="card" style={{ height: '100%' }}>
+      <div class="card-header">
+        {title}
+      </div>
+      <div ref={drop} class="card-body">
+        {children}
+      </div>
     </div>
+
+    // <div ref={drop} className={className}>
+    //   {title}
+    //   {children}
+    // </div>
   );
 };

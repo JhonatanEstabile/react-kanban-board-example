@@ -28,8 +28,16 @@ export default function MovableItem({ name, setItems }) {
   const opacity = isDragging ? 0.4 : 1;
 
   return (
-    <div ref={drag} className='movable-item' style={{ opacity }}>
-      {name}
+    <div ref={drag} class="card" style={{ opacity, maxHeight: '300px', margin: '10px' }}>
+      <div class="card-body">
+        <h5 class="card-title">{name}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+        <p class="card-text">card's content.</p>
+      </div>
     </div>
+
+    // <div ref={drag} className='movable-item' style={{ opacity }}>
+    //   {name}
+    // </div>
   );
 };
